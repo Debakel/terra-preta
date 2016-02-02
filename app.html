@@ -1,102 +1,69 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Dumpstermap</title>
+	<!--Leaflet-->
+	<link rel="stylesheet" href="css/leaflet.css" />
+	<script src="js/leaflet.js"></script>
+	
+	<!-- Leaflet location plugin -->
+	<link rel="stylesheet" href="L.Control.Locate.min.css" />
+	<link rel="stylesheet" href="css/font-awesome.min.css" />
+	<script src="js/L.Control.Locate.min.js"></script>
+	
+	<!-- Leaflet sidebar plugin -->
+	<link rel="stylesheet" href="css/leaflet-sidebar.css" />
+	<script src="js/leaflet-sidebar.js"></script>
 
-    <!-- Mapbox -->
-    <script src='https://api.mapbox.com/mapbox.js/v2.2.1/mapbox.js'></script>
-    <link href='https://api.mapbox.com/mapbox.js/v2.2.1/mapbox.css' rel='stylesheet'/>
-
-    <!--Leaflet
-    <link rel="stylesheet" href="css/leaflet.css" />
-    <script src="js/leaflet.js"></script>-->
-
-    <!-- Leaflet location plugin -->
-    <link rel="stylesheet" href="L.Control.Locate.min.css"/>
-    <link rel="stylesheet" href="css/font-awesome.min.css"/>
-    <script src="js/L.Control.Locate.min.js"></script>
-
-    <!-- Leaflet sidebar plugin -->
-    <link rel="stylesheet" href="css/leaflet-sidebar.css"/>
-    <script src="js/leaflet-sidebar.js"></script>
-
-    <!-- handlebars-->
-    <script src="http://builds.handlebarsjs.com.s3.amazonaws.com/handlebars-v3.0.3.js"></script>
-
-    <!-- JQuery -->
-    <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
-
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-
-
-    <style>
-        body {
+	
+	
+	<style>
+		body {
             padding: 0;
             margin: 0;
         }
-
-        html, body, #map {
-            height: 100%;
-
-        }
-    </style>
+		html, body, #map {
+			height: 100%;
+			
+		}
+	</style>
 </head>
 <body>
-
-
-
-</script>
-
-<!--- Sidebar -->
-<div id="sidebar" class="sidebar collapsed">
-    <!-- Nav tabs -->
-    <div class="sidebar-tabs">
-        <ul role="tablist">
-            <li><a href="#home" role="tab"><i class="fa fa-bars"></i></a></li>
-            <li><a href="#profile" role="tab"><i class="fa fa-user"></i></a></li>
-            <li class="disabled"><a href="#messages" role="tab"><i class="fa fa-envelope"></i></a></li>
-        </ul>
-        <ul role="tablist">
-            <li><a href="#settings" role="tab"><i class="fa fa-gear"></i></a></li>
-        </ul>
-    </div>
-
-    <!-- Tab panes -->
-    <div class="sidebar-content">
-        <div class="sidebar-pane" id="home">
-            <h1 class="sidebar-header">sidebar-v2
-                <div class="sidebar-close"><i class="fa fa-caret-left"></i></div>
-            </h1>
+	<!--- Sidebar -->
+	<div id="sidebar" class="sidebar collapsed">
+        <!-- Nav tabs -->
+        <div class="sidebar-tabs">
+            <ul role="tablist">
+                <li><a href="#home" role="tab"><i class="fa fa-bars"></i></a></li>
+                <li><a href="#profile" role="tab"><i class="fa fa-user"></i></a></li>
+                <li class="disabled"><a href="#messages" role="tab"><i class="fa fa-envelope"></i></a></li>
+            </ul>
+            <ul role="tablist">
+                <li><a href="#settings" role="tab"><i class="fa fa-gear"></i></a></li>
+            </ul>
         </div>
 
-        <div class="sidebar-pane" id="profile">
-            <h1 class="sidebar-header">Profile
-                <div class="sidebar-close"><i class="fa fa-caret-left"></i></div>
-            </h1>
-        </div>
+        <!-- Tab panes -->
+        <div class="sidebar-content">
+            <div class="sidebar-pane" id="home">
+                <h1 class="sidebar-header">sidebar-v2<div class="sidebar-close"><i class="fa fa-caret-left"></i></div></h1>
+			</div>
 
-        <div class="sidebar-pane" id="messages">
-            <h1 class="sidebar-header">Messages
-                <div class="sidebar-close"><i class="fa fa-caret-left"></i></div>
-            </h1>
-        </div>
+            <div class="sidebar-pane" id="profile">
+                <h1 class="sidebar-header">Profile<div class="sidebar-close"><i class="fa fa-caret-left"></i></div></h1>
+            </div>
 
-        <div class="sidebar-pane" id="settings">
-            <h1 class="sidebar-header">Settings
-                <div class="sidebar-close"><i class="fa fa-caret-left"></i></div>
-            </h1>
+            <div class="sidebar-pane" id="messages">
+                <h1 class="sidebar-header">Messages<div class="sidebar-close"><i class="fa fa-caret-left"></i></div></h1>
+            </div>
+
+            <div class="sidebar-pane" id="settings">
+                <h1 class="sidebar-header">Settings<div class="sidebar-close"><i class="fa fa-caret-left"></i></div></h1>
+            </div>
         </div>
     </div>
-</div>
-<!-- end sidebar -->
-
-<div id="map" class="sidebar-map"></div>
-<script src="app.js"></script>
+    <!-- end sidebar -->
+    
+	<div id="map" class="sidebar-map"></div>
+	<script src="app.js"></script>
 </body>
 </html>
-
