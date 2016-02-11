@@ -1,0 +1,53 @@
+
+body {
+    padding: 0;
+    margin: 0;
+}
+
+html, body, #map {
+    height: 100%;
+
+}
+
+.marker {
+    border-radius: 100%;
+    width: 4px;
+    height: 4px;
+    text-align: center;
+    line-height: 20px;
+    color: white;
+    background: #3ca0d3;
+}
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+#info {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    color: white;
+
+    font-family: 'Open Sans', sans-serif;
+    padding: 3px;
+    font-size: 10px;
+    text-align: right;
+
+}
+
+#info a {
+    color: white;
+    text-align: right;
+    right: 0px;
+    padding: 2px;
+    font-family: 'Open Sans', sans-serif;
+    padding: 3px;
+    font-size: 10px;
+    text-align: right;
+}
+
+#info h1 {
+    font-size: 12px;
+    font-style: inherit;
+    background-color: white;
+    color: black;
+    padding: 3px;
+}
+    
