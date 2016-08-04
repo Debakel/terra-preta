@@ -18,7 +18,10 @@ sidebar.addTo(map);
                 
 // Add & create Layers
 var excavations = L.mapbox.featureLayer().loadURL('data/excavation_sites.json').addTo(map);
-var findings = L.mapbox.featureLayer().loadURL('data/findings.json').addTo(map);
+var findings = L.mapbox.featureLayer().loadURL('data/findings.json');
+var findings_cluster = new L.MarkerClusterGroup();
+findings_cluster.addLayer(findings);
+findings_cluster.addTo(map);
 var amazonas = L.mapbox.featureLayer().loadURL('data/env_amazon.json').addTo(map);
 var tributaries = L.mapbox.featureLayer().loadURL('data/env_tributaries.json').addTo(map);    
 var white_water = L.mapbox.featureLayer().loadURL('data/env_white_water.json').addTo(map);
