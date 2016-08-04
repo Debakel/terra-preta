@@ -15,6 +15,8 @@ var sidebar = L.control.sidebar('sidebar', {position: 'right'});
 sidebar.addTo(map);
                 
 // Add & create Layers
+var excavations = L.mapbox.featureLayer().loadURL('data/excavation_sites.json').addTo(map);
+var findings = L.mapbox.featureLayer().loadURL('data/findings.json').addTo(map);
 var amazonas = L.mapbox.featureLayer().loadURL('data/env_amazon.json').addTo(map);
 var tributaries = L.mapbox.featureLayer().loadURL('data/env_tributaries.json').addTo(map);    
 var white_water = L.mapbox.featureLayer().loadURL('data/env_white_water.json').addTo(map);
@@ -27,9 +29,14 @@ waterfalls.on('layeradd', function(e){
 });
 waterfalls.addTo(map); 
 
+var dists_amazonas = L.mapbox.featureLayer().loadURL('data/dist_ex_sites_river_amazon.json').addTo(map);    
+var dists_ww = L.mapbox.featureLayer().loadURL('data/dist_ex_sites_river_ww.json').addTo(map);    
+var dists_bw = L.mapbox.featureLayer().loadURL('data/dist_ex_sites_river_bw.json').addTo(map);    
+
 // Group layers
 var blackwater = L.layerGroup([black_lakes, black_water]);    
 var whitewater = L.layerGroup([white_water, white_lakes]);    
+var distances = L.layerGroup([dists_amazonas, dists_ww, dists_bw]);    
 
 // Create Layer Control
 var baseMaps = {};
@@ -38,6 +45,9 @@ var overlayMaps = {
   "Tributaries of the Amazon River" : tributaries, 
   "Blackwater (rivers & lakes)": blackwater,
   "Whitewater (rivers & lakes)": whitewater,
-  "Waterfalls": waterfalls  
+  "Waterfalls": waterfalls,
+  "Distances from rivers to sites": distances,
+  "Excavation sites": excavations,
+  "Findings": findings
 };
 L.control.layers(baseMaps, overlayMaps, {position: 'topleft'}).addTo(map);
