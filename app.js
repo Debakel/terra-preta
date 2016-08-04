@@ -16,7 +16,7 @@ sidebar.addTo(map);
                 
 // Add & create Layers
 var amazonas = L.mapbox.featureLayer().loadURL('data/env_amazon.json').addTo(map);
-var tributares = L.mapbox.featureLayer().loadURL('data/env_tributaries.json').addTo(map);    
+var tributaries = L.mapbox.featureLayer().loadURL('data/env_tributaries.json').addTo(map);    
 var white_water = L.mapbox.featureLayer().loadURL('data/env_white_water.json').addTo(map);
 var black_water = L.mapbox.featureLayer().loadURL('data/env_black_water.json').addTo(map);    
 var white_lakes = L.mapbox.featureLayer().loadURL('data/env_lake_white.json').addTo(map);    
@@ -28,12 +28,16 @@ waterfalls.on('layeradd', function(e){
 waterfalls.addTo(map); 
 
 // Group layers
-var lakes = L.layerGroup([white_water, black_water]);    
+var blackwater = L.layerGroup([black_lakes, black_water]);    
+var whitewater = L.layerGroup([white_water, white_lakes]);    
 
 // Create Layer Control
 var baseMaps = {};
 var overlayMaps = {
-  "Amazonas": amazonas,  
-  "Water": lakes  
+  "Amazonas River": amazonas,
+  "Tributaries of the Amazon River" : tributaries, 
+  "Blackwater (rivers & lakes)": blackwater,
+  "Whitewater (rivers & lakes)": whitewater,
+  "Waterfalls": waterfalls  
 };
 L.control.layers(baseMaps, overlayMaps, {position: 'topleft'}).addTo(map);
