@@ -1,0 +1,26 @@
+L.mapbox.accessToken = 'pk.eyJ1IjoiZGViYWtlbCIsImEiOiJjaWthZGR6MGYwMDI3d2xsdmFveno2dzVqIn0._2PQT_7CyCFzi3Gfs5a_Zw';
+
+// Create map
+var map = L.mapbox.map('map', 'mapbox.streets')
+        .setView([50.952,9.371], 7);
+    
+// Add controls
+map.addControl(L.mapbox.infoControl());
+map.addControl(L.control.zoom());
+map.addControl(L.control.locate());
+map.addControl(L.control.scale());
+map.removeControl(this.map.attributionControl);
+
+// Add sidebar
+var sidebar = L.control.sidebar('sidebar');
+//sidebar.addTo(map);
+                
+// Add & create Layers
+    var amazonas = L.mapbox.featureLayer();
+    amazonas.loadURL('data/env_amazon.json');
+    //amazonas.on('layeradd', function (e) {
+    //    var marker = e.layer,
+    //        feature = marker.feature;
+     //   marker.setIcon(L.divIcon(feature.properties.icon));
+    //});  
+    map.addLayer(amazonas);
