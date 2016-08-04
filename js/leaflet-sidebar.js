@@ -1,4 +1,13 @@
-L.Control.Sidebar = L.Control.extend({
+/**
+ * @name Sidebar
+ * @class L.Control.Sidebar
+ * @extends L.Control
+ * @param {string} id - The id of the sidebar element (without the # character)
+ * @param {Object} [options] - Optional options object
+ * @param {string} [options.position=left] - Position of the sidebar: 'left' or 'right'
+ * @see L.control.sidebar
+ */
+L.Control.Sidebar = L.Control.extend(/** @lends L.Control.Sidebar.prototype */ {
     includes: L.Mixin.Events,
 
     options: {
@@ -50,6 +59,12 @@ L.Control.Sidebar = L.Control.extend({
         }
     },
 
+    /**
+     * Add this sidebar to the specified map.
+     *
+     * @param {L.Map} map
+     * @returns {Sidebar}
+     */
     addTo: function (map) {
         var i, child;
 
@@ -69,8 +84,25 @@ L.Control.Sidebar = L.Control.extend({
 
         return this;
     },
+    
+    /**
+     * @deprecated - Please use remove() instead of removeFrom(), as of Leaflet 0.8-dev, the removeFrom() has been replaced with remove()
+     * Removes this sidebar from the map.
+     * @param {L.Map} map
+     * @returns {Sidebar}
+     */
+     removeFrom: function(map) {
+         console.log('removeFrom() has been deprecated, please use remove() instead as support for this function will be ending soon.');
+         this.remove(map);
+     },
 
-    removeFrom: function (map) {
+    /**
+     * Remove this sidebar from the map.
+     *
+     * @param {L.Map} map
+     * @returns {Sidebar}
+     */
+    remove: function (map) {
         var i, child;
 
         this._map = null;
@@ -88,6 +120,11 @@ L.Control.Sidebar = L.Control.extend({
         return this;
     },
 
+    /**
+     * Open sidebar (if necessary) and show the specified tab.
+     *
+     * @param {string} id - The id of the tab to show (without the # character)
+     */
     open: function(id) {
         var i, child;
 
@@ -120,6 +157,9 @@ L.Control.Sidebar = L.Control.extend({
         return this;
     },
 
+    /**
+     * Close the sidebar (if necessary).
+     */
     close: function() {
         // remove old active highlights
         for (var i = this._tabitems.length - 1; i >= 0; i--) {
@@ -137,18 +177,35 @@ L.Control.Sidebar = L.Control.extend({
         return this;
     },
 
-    _onClick: function(e) {
+    /**
+     * @private
+     */
+    _onClick: function() {
         if (L.DomUtil.hasClass(this, 'active'))
             this._sidebar.close();
         else if (!L.DomUtil.hasClass(this, 'disabled'))
             this._sidebar.open(this.querySelector('a').hash.slice(1));
     },
 
+    /**
+     * @private
+     */
     _onCloseClick: function () {
         this.close();
     }
 });
 
-L.control.sidebar = function (sidebar, options) {
-    return new L.Control.Sidebar(sidebar, options);
+/**
+ * Creates a new sidebar.
+ *
+ * @example
+ * var sidebar = L.control.sidebar('sidebar').addTo(map);
+ *
+ * @param {string} id - The id of the sidebar element (without the # character)
+ * @param {Object} [options] - Optional options object
+ * @param {string} [options.position=left] - Position of the sidebar: 'left' or 'right'
+ * @returns {Sidebar} A new sidebar instance
+ */
+L.control.sidebar = function (id, options) {
+    return new L.Control.Sidebar(id, options);
 };
