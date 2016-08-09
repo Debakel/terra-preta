@@ -8,8 +8,7 @@ var map = L.mapbox.map('map', 'mapbox.streets')
 map.addControl(L.mapbox.infoControl());
 map.addControl(L.control.locate());
 map.addControl(L.control.scale());
-var measureControl = L.control.measure();
-measureControl.addTo(map);
+map.addControl(L.control.measure({position: 'topleft'}));
 map.removeControl(this.map.attributionControl);
 
 // Add sidebar
