@@ -1,7 +1,7 @@
 L.mapbox.accessToken = 'pk.eyJ1IjoiZGViYWtlbCIsImEiOiJjaWthZGR6MGYwMDI3d2xsdmFveno2dzVqIn0._2PQT_7CyCFzi3Gfs5a_Zw';
 
 // Create map
-var map = L.mapbox.map('map', 'mapbox.streets')
+var map = L.mapbox.map('map', 'mapbox.streets-satellite')
         .setView([-4.471483378716517, -56.260213747794005], 7);
     
 // Add controls
