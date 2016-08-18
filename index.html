@@ -4,11 +4,13 @@
     <meta charset='utf-8'>
     <title>TerraPreta GIS</title>
     <!-- Mapbox -->
-    <script src='https://api.mapbox.com/mapbox.js/v2.2.4/mapbox.js'></script>
-    <link href='https://api.mapbox.com/mapbox.js/v2.2.4/mapbox.css' rel='stylesheet'/>
+    <script src='js/mapbox.js'>
+</script>
+    <link href='css/mapbox.css' rel='stylesheet'/>
 
     <!-- Leaflet location plugin -->
-    <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.min.js'></script>
+    <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.min.js'>
+</script>
     <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.mapbox.css'
           rel='stylesheet'/>
     <!--[if lt IE 9]>
@@ -20,24 +22,28 @@
 
     <!-- Leaflet sidebar plugin -->
     <link rel="stylesheet" href="css/leaflet-sidebar.css"/>
-    <script src="js/leaflet-sidebar.js"></script>
+    <script src="js/leaflet-sidebar.js">
+</script>
     
     <!-- Github opticons -->
     <link href='inc/octicons/octicons.css'
           rel='stylesheet'/>
     
     <!-- jQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="js/jquery.min.js">
+</script>
 
     <link href='css/style.css'
           rel='stylesheet'/>
 
     <!-- Leaflet measure plugin -->
-    <script src="js/leaflet-measure.min.js"></script>
+    <script src="js/leaflet-measure.min.js">
+</script>
     <link rel="stylesheet" href="css/leaflet-measure.css">
 
     <!-- Marker cluster plugin -->
-    <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/leaflet.markercluster.js'></script>
+    <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/leaflet.markercluster.js'>
+</script>
 <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.css' rel='stylesheet' />
 <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.Default.css' rel='stylesheet' />
 
@@ -55,7 +61,7 @@
             <ul role="tablist">
                 <li><a href="#home" role="tab"><i class="fa fa-bars"></i></a></li>
                 <li><a href="#details" role="tab" id="details-show"><i class="fa fa-info"></i></a></li>
-                <!--<li class="disabled"><a href="#messages" role="tab"><i class="fa fa-envelope"></i></a></li>-->
+                <li><a href="#filter" role="tab" id="details-show"><i class="fa fa-info"></i></a></li>
             </ul>
 
             <ul role="tablist">
@@ -82,6 +88,20 @@
 
                 <div id="details-content"></div>
             </div>
+            
+             <div class="sidebar-pane" id="filter">
+                <h1 class="sidebar-header">
+                    <span id="details-title">Filter entries</span>
+                    <span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
+                </h1>
+
+                <div id="details-content">
+                    <span>Filter by Tradition</span><br>
+                    <select multiple="" class="form-control" id="select-tradition">
+                    </select>
+                    <div id='log'></div>
+                </div>
+            </div>
 
             <!--<div class="sidebar-pane" id="messages">
                 <h1 class="sidebar-header">Messages<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
@@ -94,6 +114,7 @@
     </div>
 <!-- end sidebar -->
 
-<script src="app.js"></script>
+<script src="app.js">
+</script>
 </body>
 </html>
