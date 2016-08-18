@@ -126,11 +126,35 @@ findings.then(function(data){
 var traditions_choices = "";
 $.each(traditions, function(i, t){
     traditions_choices += "<option>" + t + "</option>";
-})
+});
+
+var culture_choices = "";
+$.each(cultures, function(i, t){
+    culture_choices += "<option>" + t + "</option>";
+});
+
+var archaeologist_choices = "";
+$.each(archaeologists, function(i, t){
+    archaeologist_choices += "<option>" + t + "</option>";
+});
+
 
 $('#select-tradition').html(traditions_choices);
 $('#select-tradition').change(function(){
     query.traditions = $('#select-tradition').val()
+    excavations.setFilter(AndFilter);
+});
+
+
+$('#select-culture').html(culture_choices);
+$('#select-culture').change(function(){
+    query.cultures = $('#select-culture').val()
+    excavations.setFilter(AndFilter);
+});
+
+$('#select-archaeologist').html(archaeologist_choices);
+$('#select-archaeologist').change(function(){
+    query.archaeologists = $('#select-archaeologist').val()
     excavations.setFilter(AndFilter);
 });
 });
