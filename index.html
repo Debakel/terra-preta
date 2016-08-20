@@ -3,6 +3,7 @@
 <head>
     <meta charset='utf-8'>
     <title>TerraPreta GIS</title>
+
     <!-- Mapbox -->
     <script src='js/mapbox.js'>
 </script>
@@ -47,6 +48,18 @@
 <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.css' rel='stylesheet' />
 <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.Default.css' rel='stylesheet' />
 
+<!-- Bootstrap -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<!-- jQuery select2 -->
+<link href="css/select2.min.css" rel="stylesheet" />
+<script src="js/select2.min.js"></script>
+
+<!-- Leaflet heat -->
+<script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-heat/v0.1.3/leaflet-heat.js'></script>
+
 </head>
 <body>
 
@@ -61,12 +74,13 @@
             <ul role="tablist">
                 <li><a href="#home" role="tab"><i class="fa fa-bars"></i></a></li>
                 <li><a href="#details" role="tab" id="details-show"><i class="fa fa-info"></i></a></li>
-                <li><a href="#filter" role="tab" id="details-show"><i class="fa fa-info"></i></a></li>
+                <li><a href="#filter" role="tab" id="details-show"><i class="fa fa-search"></i></a></li>
             </ul>
-
+            <!-- tablist bottom 
             <ul role="tablist">
                 <li><a href="#settings" role="tab"><i class="fa fa-gear"></i></a></li>
             </ul>
+            -->
         </div>
 
         <!-- Tab panes -->
@@ -96,28 +110,27 @@
                 </h1>
 
                 <div id="details-content">
-                    <span>Filter by Tradition</span><br>
-                    <select multiple="" class="form-control" id="select-tradition">
+                    <label for="select-tradition">Filter by Tradition</label><br>
+                    <select id="select-tradition" multiple style="width: 100%">
                     </select>
                     <br>
-                    <span>Filter by Culture</span><br>
-                    <select multiple="" class="form-control" id="select-culture">
+                    <label for="select-culture">Filter by Culture</label><br>
+                    <select id="select-culture" multiple style="width: 100%">
                     </select>
                     <br>
-                    <span>Filter by Archaelogist</span><br>
-                    <select multiple="" class="form-control" id="select-archaeologist">
+                    <label for="select-archaeologist">Filter by Archaelogist</label><br>
+                    <select id="select-archaeologist" multiple style="width: 100%">
                     </select>
                     <br>
+
                 </div>
             </div>
 
-            <!--<div class="sidebar-pane" id="messages">
-                <h1 class="sidebar-header">Messages<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
-            </div>-->
-
+            <!-- sidebar-panes bottom 
             <div class="sidebar-pane" id="settings">
                 <h1 class="sidebar-header">Settings<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
             </div>
+            -->
         </div>
     </div>
 <!-- end sidebar -->
