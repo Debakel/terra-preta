@@ -1,6 +1,9 @@
+// Set access token for mapbox tile service
 L.mapbox.accessToken = 'pk.eyJ1IjoiZGViYWtlbCIsImEiOiJjaWthZGR6MGYwMDI3d2xsdmFveno2dzVqIn0._2PQT_7CyCFzi3Gfs5a_Zw';
+
 // Create base map
 var map = L.mapbox.map('map', 'mapbox.streets-satellite').setView([-4.471483378716517, -56.260213747794005], 7);
+
 // Add controls to base map
 map.addControl(L.mapbox.infoControl());
 map.addControl(L.control.locate());
@@ -28,19 +31,21 @@ var excavations = L.mapbox.featureLayer(null, {
         });    
     }
 });
-// Load data into excavation layer and display on map
-var excavations_cluster = new L.MarkerClusterGroup({showCoverageOnHover: false});
-excavations.loadURL('data/excavation_sites_with_findings.json')
-    .on('ready', function(e){       
-      updateCluster();
-    });
-excavations_cluster.addTo(map);
+
+// Create cluster layer for excavation sites
+var excavations_cluster = new L.MarkerClusterGroup({showCoverageOnHover: false}).addTo(map);
 function updateCluster(){
     excavations_cluster.clearLayers();
     excavations.eachLayer(function(layer){
             excavations_cluster.addLayer(layer);
         });
 }
+
+// Load excavation sites and and to cluster layer
+excavations.loadURL('data/excavation_sites_with_findings.json').on('ready', function(e){       
+      updateCluster();
+    });
+
 // Set excavation sites onClickListener
 excavations.on('click', function(e) {
     // open sidebar and show finding details (Tradition, Kultur, Archäologe, Jahr)
@@ -223,8 +228,8 @@ excavations.on('ready', createHeatmap);
 var heatmap;
 function createHeatmap(){
    var points = [];
-    $.each(excavations._layers, function(i, site){
-        points.push(site.getLatLng());    
-    });
+   excavations.eachLayer(function(layer){
+       points.push(layer.getLatLng());
+   });
     heatmap = L.heatLayer(points).addTo(map); 
 };
