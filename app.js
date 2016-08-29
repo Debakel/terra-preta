@@ -29,8 +29,18 @@ var excavations = L.mapbox.featureLayer(null, {
     }
 });
 // Load data into excavation layer and display on map
-excavations.loadURL('data/excavation_sites_with_findings.json').addTo(map);
-
+var excavations_cluster = new L.MarkerClusterGroup({showCoverageOnHover: false});
+excavations.loadURL('data/excavation_sites_with_findings.json')
+    .on('ready', function(e){       
+      updateCluster();
+    });
+excavations_cluster.addTo(map);
+function updateCluster(){
+    excavations_cluster.clearLayers();
+    excavations.eachLayer(function(layer){
+            excavations_cluster.addLayer(layer);
+        });
+}
 // Set excavation sites onClickListener
 excavations.on('click', function(e) {
     // open sidebar and show finding details (Tradition, Kultur, Archäologe, Jahr)
@@ -117,7 +127,7 @@ var overlayMaps = {
     "Whitewater (rivers & lakes)": whitewater,
     "Waterfalls": waterfalls,
     "Distances from rivers to sites": distances,
-    "Excavation sites": excavations // "Findings": findings
+    "Excavation sites": excavations_cluster // "Findings": findings
 };
 L.control.layers(baseMaps, overlayMaps, {
     position: 'topleft'
@@ -188,6 +198,7 @@ findings.then(function(data){
     $('#select-tradition').change(function(){
         query.traditions = $('#select-tradition').val();
         excavations.setFilter(AndFilter);
+        updateCluster();
     });
 
 
@@ -195,12 +206,14 @@ findings.then(function(data){
     $('#select-culture').change(function(){
         query.cultures = $('#select-culture').val();
         excavations.setFilter(AndFilter);
+        updateCluster();
     });
 
     $('#select-archaeologist').html(archaeologist_choices).select2();
     $('#select-archaeologist').change(function(){
         query.archaeologists =  $('#select-archaeologist').val(); 
         excavations.setFilter(AndFilter);
+        updateCluster();
     });
 });
 
