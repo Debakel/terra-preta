@@ -18,12 +18,15 @@ def get_findings_for_site(site_id):
             filtered_findings.append(finding['properties'])
     return filtered_findings
 
+def merge_findings_into_excavation_sites():
+    # Add findings to excavation sites
+    for site in sites['features']:
+        site_id = site['properties']['excavation_site_id_pk']
+        filtered_findings = get_findings_for_site(site_id)
+        site['findings'] = filtered_findings
+
 move_year_to_own_field()
-# Add findings to excavation sites
-for site in sites['features']:
-    site_id = site['properties']['excavation_site_id_pk']
-    filtered_findings = get_findings_for_site(site_id)
-    site['findings'] = filtered_findings
+merge_findings_into_excavation_sites
 
 # Output as geojson
 f = open('data/excavation_sites_with_findings.json', 'w')
