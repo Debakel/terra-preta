@@ -119,18 +119,24 @@
 
                 <div id="details-content">
                     <label for="select-tradition">Filter by Tradition</label><br>
-                    <select id="select-tradition" multiple style="width: 100%">
+                    <select id="select-tradition" multiple style="width: 100%" class="filter-input">
                     </select>
                     <br>
                     <label for="select-culture">Filter by Culture</label><br>
-                    <select id="select-culture" multiple style="width: 100%">
+                    <select id="select-culture" multiple style="width: 100%" class="filter-input">
                     </select>
                     <br>
                     <label for="select-archaeologist">Filter by Archaelogist</label><br>
-                    <select id="select-archaeologist" multiple style="width: 100%">
+                    <select id="select-archaeologist" multiple style="width: 100%" class="filter-input">
                     </select>
                     <br>
+                    <label for="year-from">Filter by time</label><br> 
+                    <div class="input-group"> 
 
+   <input type="text" id="year-from" class="form-control filter-input" placeholder="1956"><span class="input-group-addon"> - </span>
+<input type="text" id="year-to" class="form-control filter-input" placeholder="2001">
+</div>
+                    <br>
                 </div>
             </div>
 

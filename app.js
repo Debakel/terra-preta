@@ -128,15 +128,21 @@ var dists_bw = L.mapbox.featureLayer().loadURL('data/dist_ex_sites_river_bw.json
 var query = {
     cultures: [],
     traditions: [],
-    archaeologists: []
+    archaeologists: [],
+    years: []
 };
 function AndFilter(feature) {
     // Returns true if at least one finding matches the criteria given in $query
     var match = false;
     $.each(feature.findings, function(i, finding) {
-        if (((query.cultures == null ) || (query.cultures.length == 0) || ($.inArray(finding.culture_name, query.cultures) != -1)) & ((query.archaeologists == null ) || (query.archaeologists.length == 0) || ($.inArray(finding.archaeologist_name, query.archaeologists) != -1)) & ((query.traditions == null ) || (query.traditions.length == 0) || ($.inArray(finding.tradition_name, query.traditions) != -1))) {
-            match = true;
-        }
+        if  (((query.cultures == null ) || (query.cultures.length == 0) || ($.inArray(finding.culture_name, query.cultures) != -1)) & 
+            ((query.archaeologists == null ) || (query.archaeologists.length == 0) || ($.inArray(finding.archaeologist_name, query.archaeologists) != -1)) & 
+            ((query.traditions == null ) || (query.traditions.length == 0) || ($.inArray(finding.tradition_name, query.traditions) != -1)) &
+            ((query.years[0] == null) || query.years[0].length == 0 || finding.year >= parseInt(query.years[0])) &
+            ((query.years[1] == null) || query.years[1].length == 0 || finding.year <= parseInt(query.years[1])))
+            {
+                match = true;
+            }
     });
     return match;
 }
@@ -173,21 +179,18 @@ findings.then(function(data) {
     $.each(archaeologists, function(i, t) {
         archaeologist_choices += "<option>" + t + "</option>";
     });
-    // Re-Filter items when selection changes
     $('#select-tradition').html(traditions_choices).select2();
-    $('#select-tradition').change(function() {
-        query.traditions = $('#select-tradition').val();
-        applyFilter();
-    });
     $('#select-culture').html(culture_choices).select2();
-    $('#select-culture').change(function() {
-        query.cultures = $('#select-culture').val();
-        applyFilter();
-    });
     $('#select-archaeologist').html(archaeologist_choices).select2();
-    $('#select-archaeologist').change(function() {
+    
+    // Re-Filter items when selection changes
+    $('.filter-input').on('change', function(){
+        query.traditions = $('#select-tradition').val();
+        query.cultures = $('#select-culture').val();
         query.archaeologists = $('#select-archaeologist').val();
-        applyFilter();
+        query.years[0] = $('#year-from').val();
+        query.years[1] = $('#year-to').val();
+        applyFilter();      
     });
 });
 
